@@ -1,0 +1,9 @@
+<h1>My Account</h1>
+
+User Id: <%= user.id %><br/>
+User Name: <%= user.username %><br/>
+EMail: <%= user.email %>
+<p>
+    <%= JSON.stringify(user._identities) %>
+<p>
+    <a href='/auth/logout'>Logout</a>

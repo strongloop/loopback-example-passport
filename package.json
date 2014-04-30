@@ -1,5 +1,5 @@
 {
-  "name": "loopback-example-facebook",
+  "name": "loopback-example-passport",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "loopback": "1.x >=1.7.0",
     "passport": "~0.2.0",
     "passport-facebook": "~1.0.3",
-    "connect-ensure-login": "~0.1.1"
+    "connect-ensure-login": "~0.1.1",
+    "ejs": "~1.0.0"
   },
   "optionalDependencies": {
     "loopback-explorer": "~1.1.0",

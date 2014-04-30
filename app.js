@@ -22,13 +22,14 @@ app.use(loopback.cookieParser(app.get('cookieSecret')));
 app.use(loopback.token({model: app.models.accessToken}));
 app.use(loopback.bodyParser());
 app.use(loopback.methodOverride());
-
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.use(loopback.session({ secret: 'keyboard cat' }));
 
 var fbConfig = {};
 try {
-  fbConfig = require('./facebook.json');
+  fbConfig = require('./providers.json').facebook;
 } catch(err) {
   console.error('Please configure your facebook application in facebook.json as follows:');
   console.error('{ "clientID": "your-facebook-client-id",');
@@ -41,13 +42,18 @@ fbLogin({
   clientID: fbConfig.clientID,
   clientSecret: fbConfig.clientSecret,
   callbackURL: fbConfig.callbackURL,
-  successRedirect: '/auth/facebook/profile',
+  successRedirect: '/auth/account',
   session: true,
   scope: ['email']
 });
 
-app.get('/auth/facebook/profile', function(req, res, next) {
-  res.send(req.user);
+app.get('/auth/account', function(req, res, next) {
+  res.render('account', {user: req.user});
+});
+
+app.get('/auth/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
 });
 
 /*

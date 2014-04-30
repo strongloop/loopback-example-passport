@@ -30,7 +30,15 @@ module.exports = function configure(options) {
 
     passport.deserializeUser(function(id, done) {
       // Look up the user instance by id
-      app.models.user.findById(id, done);
+      app.models.user.findById(id, function(err, user) {
+        if(err || !user) {
+          return done(err, user);
+        }
+        user.identities(function(err, identities) {
+          user._identities = identities;
+          done(err, user);
+        });
+      });
     });
   }
 

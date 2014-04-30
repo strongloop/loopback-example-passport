@@ -1,4 +1,4 @@
-loopback-example-facebook
+loopback-example-passport
 =========================
 
-LoopBack example for facebook login
+LoopBack example for passport login modules
