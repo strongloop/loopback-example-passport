@@ -1,7 +1,6 @@
 var loopback = require('loopback');
 var path = require('path');
 var app = module.exports = loopback();
-var started = new Date();
 
 /*
  * 1. Configure LoopBack models and datasources
@@ -24,6 +23,9 @@ app.use(loopback.token({model: app.models.accessToken}));
 app.use(loopback.bodyParser());
 app.use(loopback.methodOverride());
 
+
+app.use(loopback.session({ secret: 'keyboard cat' }));
+
 var fbConfig = {};
 try {
   fbConfig = require('./facebook.json');
@@ -40,11 +42,11 @@ fbLogin({
   clientSecret: fbConfig.clientSecret,
   callbackURL: fbConfig.callbackURL,
   successRedirect: '/auth/facebook/profile',
-  session: false
+  session: true,
+  scope: ['email']
 });
 
 app.get('/auth/facebook/profile', function(req, res, next) {
-  console.log(req);
   res.send(req.user);
 });
 
@@ -120,15 +122,6 @@ app.use(loopback.urlNotFound());
 
 // The ultimate error handler.
 app.use(loopback.errorHandler());
-
-
-/*
- * 5. Add a basic application status route at the root `/`.
- *
- * (remove this to handle `/` on your own)
- */
-
-app.get('/', loopback.status());
 
 /*
  * 6. Enable access control and token based authentication.

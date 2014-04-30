@@ -16,10 +16,12 @@ module.exports = function configure(options) {
   var callbackPath = options.callbackPath || ('/auth/' + provider + '/callback');
   var successRedirect = options.successRedirect || '/';
   var failureRedirect = options.failureRedirect || '/';
+  var scope = options.scope;
 
   var session = !!options.session;
   if(options.session) {
-    // Serilization and deserialization is only required if passport session is
+    app.use(passport.session());
+    // Serialization and deserialization is only required if passport session is
     // enabled
 
     passport.serializeUser(function(user, done) {
@@ -38,20 +40,37 @@ module.exports = function configure(options) {
     callbackURL: callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
+    /*
     console.log(accessToken, profile);
     process.nextTick(function() {
       done && done(null, {id: '123'});
     });
-    /*
-    app.models.userIdentity.find({where: {
+    */
+
+    app.models.userIdentity.findOne({where: {
       provider: provider,
       externalId: profile.id
     }}, function(err, identity) {
+      if(err) {
+        return done(err);
+      }
+      if(identity) {
+        console.log(identity.userId);
+        // Find the user for the given identity
+        return identity.user(done);
+      }
+      console.log(profile);
+      // Let's create a user for that
+      var email = profile.emails && profile.emails[0].value;
       app.models.user.create({
         username: provider + '.' + profile.username,
-        email: profile.email,
-        password: accessToken
+        password: accessToken,
+        email: email
       }, function(err, u) {
+        if(err) {
+          console.error(err);
+          return done(err);
+        }
         app.models.userIdentity.create({
           provider: provider,
           externalId: profile.id,
@@ -60,13 +79,13 @@ module.exports = function configure(options) {
           credentials: {
             accessToken: accessToken,
             refreshToken: refreshToken
-          }
+          },
+          userId: u.id
         }, function(err, i) {
           done(err, u);
         });
       });
     });
-    */
     }
   ));
 
@@ -75,7 +94,7 @@ module.exports = function configure(options) {
   * Facebook will redirect the user back to the application at
   * /auth/facebook/callback with the authorization code
   */
-  app.get(authPath, passport.authenticate(provider, {session: session}));
+  app.get(authPath, passport.authenticate(provider, {scope: scope, session: session}));
 
  /*
   * Facebook will redirect the user to this URL after approval. Finish the

@@ -8,7 +8,8 @@
   "dependencies": {
     "loopback": "1.x >=1.7.0",
     "passport": "~0.2.0",
-    "passport-facebook": "~1.0.3"
+    "passport-facebook": "~1.0.3",
+    "connect-ensure-login": "~0.1.1"
   },
   "optionalDependencies": {
     "loopback-explorer": "~1.1.0",

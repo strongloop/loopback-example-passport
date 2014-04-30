@@ -20,6 +20,20 @@
     "dataSource": "db",
     "public": true
   },
+  "userIdentity": {
+    "options": {
+      "base": "UserIdentity",
+      "relations": {
+        "user": {
+          "model": "user",
+          "type": "belongsTo",
+          "foreignKey": "userId"
+        }
+      }
+    },
+    "dataSource": "db",
+    "public": true
+  },
   "accessToken": {
     "options": {
       "base": "AccessToken"
