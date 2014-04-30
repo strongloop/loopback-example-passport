@@ -24,7 +24,16 @@ app.use(loopback.token({model: app.models.accessToken}));
 app.use(loopback.bodyParser());
 app.use(loopback.methodOverride());
 
-var fbConfig = require('./facebook.json');
+var fbConfig = {};
+try {
+  fbConfig = require('./facebook.json');
+} catch(err) {
+  console.error('Please configure your facebook application in facebook.json as follows:');
+  console.error('{ "clientID": "your-facebook-client-id",');
+  console.error('  "clientSecret": "your-facebook-client-secret",');
+  console.error('  "callbackURL": "http://localhost:3000/auth/facebook/callback" }');
+  process.exit(1);
+}
 var fbLogin = require('./facebook-login');
 fbLogin({
   clientID: fbConfig.clientID,
