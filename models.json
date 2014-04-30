@@ -1,0 +1,112 @@
+{
+  "email": {
+    "options": {
+      "base": "Email"
+    },
+    "dataSource": "mail",
+    "public": false
+  },
+  "user": {
+    "options": {
+      "base": "User",
+      "relations": {
+        "accessTokens": {
+          "model": "accessToken",
+          "type": "hasMany",
+          "foreignKey": "userId"
+        }
+      }
+    },
+    "dataSource": "db",
+    "public": true
+  },
+  "accessToken": {
+    "options": {
+      "base": "AccessToken"
+    },
+    "dataSource": "db",
+    "public": true
+  },
+  "application": {
+    "options": {
+      "base": "Application"
+    },
+    "dataSource": "db",
+    "public": true
+  },
+  "acl": {
+    "options": {
+      "base": "ACL"
+    },
+    "dataSource": "db",
+    "public": false
+  },
+  "roleMapping": {
+    "options": {
+      "base": "RoleMapping"
+    },
+    "dataSource": "db",
+    "public": false
+  },
+  "role": {
+    "options": {
+      "base": "Role",
+      "relations": {
+        "principals": {
+          "type": "hasMany",
+          "model": "roleMapping",
+          "foreignKey": "roleId"
+        }
+      }
+    },
+    "dataSource": "db",
+    "public": false
+  },
+  "scope": {
+    "options": {
+      "base": "Scope"
+    },
+    "dataSource": "db",
+    "public": false
+  },
+  "push": {
+    "options": {
+      "base": "Push",
+      "plural": "push"
+    },
+    "dataSource": "push"
+  },
+  "installation": {
+    "options": {
+      "base": "Installation"
+    },
+    "dataSource": "db",
+    "public": true
+  },
+  "notification": {
+    "options": {
+      "base": "Notification"
+    },
+    "dataSource": "db",
+    "public": true
+  },
+  "account": {
+    "properties": {
+      "email": {
+        "type": "string"
+      },
+      "level": {
+        "type": "number"
+      },
+      "created": {
+        "type": "date"
+      },
+      "modified": {
+        "type": "date"
+      }
+    },
+    "public": true,
+    "dataSource": "db",
+    "plural": "accounts"
+  }
+}

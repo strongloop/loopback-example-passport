@@ -1,0 +1,17 @@
+{
+  "name": "loopback-example-facebook",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "loopback": "1.x >=1.7.0",
+    "passport": "~0.2.0",
+    "passport-facebook": "~1.0.3"
+  },
+  "optionalDependencies": {
+    "loopback-explorer": "~1.1.0",
+    "loopback-push-notification": "~1.2.0"
+  }
+}
