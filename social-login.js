@@ -2,13 +2,13 @@ var app = require('./app');
 
 var passport = require('passport');
 
-var provider = 'facebook';
-var AuthStrategy = require('passport-' + provider).Strategy;
-
 app.use(passport.initialize());
 
-module.exports = function configure(options) {
+module.exports = function configure(provider, options) {
   options = options || {};
+
+  var AuthStrategy = require(options.module)[options.strategy || 'Strategy'];
+
   var clientID = options.clientID;
   var clientSecret = options.clientSecret;
   var callbackURL = options.callbackURL;
@@ -71,7 +71,7 @@ module.exports = function configure(options) {
       // Let's create a user for that
       var email = profile.emails && profile.emails[0].value;
       app.models.user.create({
-        username: provider + '.' + profile.username,
+        username: provider + '.' + (profile.username || profile.id),
         password: accessToken,
         email: email
       }, function(err, u) {

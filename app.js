@@ -27,9 +27,9 @@ app.set('view engine', 'ejs');
 
 app.use(loopback.session({ secret: 'keyboard cat' }));
 
-var fbConfig = {};
+var config = {};
 try {
-  fbConfig = require('./providers.json').facebook;
+  config = require('./providers.json');
 } catch(err) {
   console.error('Please configure your facebook application in facebook.json as follows:');
   console.error('{ "clientID": "your-facebook-client-id",');
@@ -37,15 +37,14 @@ try {
   console.error('  "callbackURL": "http://localhost:3000/auth/facebook/callback" }');
   process.exit(1);
 }
-var fbLogin = require('./facebook-login');
-fbLogin({
-  clientID: fbConfig.clientID,
-  clientSecret: fbConfig.clientSecret,
-  callbackURL: fbConfig.callbackURL,
-  successRedirect: '/auth/account',
-  session: true,
-  scope: ['email']
-});
+
+var socialLogin = require('./social-login');
+
+for(var provider in config) {
+  var c = config[provider];
+  c.session = c.session !== false;
+  socialLogin(provider, c);
+}
 
 app.get('/auth/account', function(req, res, next) {
   res.render('account', {user: req.user});
