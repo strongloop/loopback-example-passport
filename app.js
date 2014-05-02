@@ -31,10 +31,12 @@ var config = {};
 try {
   config = require('./providers.json');
 } catch(err) {
-  console.error('Please configure your facebook application in facebook.json as follows:');
-  console.error('{ "clientID": "your-facebook-client-id",');
-  console.error('  "clientSecret": "your-facebook-client-secret",');
-  console.error('  "callbackURL": "http://localhost:3000/auth/facebook/callback" }');
+  console.error('Please configure your passport strategy in providers.json as follows:');
+  console.error('{ "facebook":');
+  console.error('  { "clientID": "your-facebook-client-id",');
+  console.error('    "clientSecret": "your-facebook-client-secret",');
+  console.error('    "callbackURL": "http://localhost:3000/auth/facebook/callback" }');
+  console.error('}');
   process.exit(1);
 }
 
