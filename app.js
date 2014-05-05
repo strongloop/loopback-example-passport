@@ -48,7 +48,9 @@ for(var provider in config) {
   socialLogin(provider, c);
 }
 
-app.get('/auth/account', function(req, res, next) {
+var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+
+app.get('/auth/account', ensureLoggedIn('/'), function(req, res, next) {
   res.render('account', {user: req.user});
 });
 
