@@ -50,6 +50,10 @@ for(var s in config) {
 
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
+app.get('/', function(req, res, next) {
+  res.render('index', {user: req.user});
+});
+
 app.get('/auth/account', ensureLoggedIn('/login.html'), function(req, res, next) {
   res.render('loginProfiles', {user: req.user});
 });

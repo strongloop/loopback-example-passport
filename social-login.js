@@ -29,12 +29,11 @@ module.exports = function configure(name, options) {
 
   var AuthStrategy = require(options.module)[options.strategy || 'Strategy'];
 
-  var provider = options.provider || provider;
   var clientID = options.clientID;
   var clientSecret = options.clientSecret;
   var callbackURL = options.callbackURL;
-  var authPath = options.authPath || ('/auth/' + provider);
-  var callbackPath = options.callbackPath || ('/auth/' + provider + '/callback');
+  var authPath = options.authPath || ('/auth/' + name);
+  var callbackPath = options.callbackPath || ('/auth/' + name + '/callback');
   var successRedirect = options.successRedirect || '/';
   var failureRedirect = options.failureRedirect || '/';
   var scope = options.scope;
@@ -50,10 +49,10 @@ module.exports = function configure(name, options) {
     },
     function (req, accessToken, refreshToken, profile, done) {
       if (link) {
-        app.models.userCredential.link(req.user.id, provider, 'oAuth 2.0', profile,
+        app.models.userCredential.link(req.user.id, name, 'oAuth 2.0', profile,
           {accessToken: accessToken, refreshToken: refreshToken}, done);
       } else {
-        app.models.userIdentity.login(provider, 'oAuth 2.0', profile,
+        app.models.userIdentity.login(name, 'oAuth 2.0', profile,
           {accessToken: accessToken, refreshToken: refreshToken}, done);
       }
     }
