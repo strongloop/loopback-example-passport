@@ -39,6 +39,20 @@
     "dataSource": "db",
     "public": true
   },
+  "userCredential": {
+    "options": {
+      "base": "UserCredential",
+      "relations": {
+        "user": {
+          "model": "user",
+          "type": "belongsTo",
+          "foreignKey": "userId"
+        }
+      }
+    },
+    "dataSource": "db",
+    "public": true
+  },
   "accessToken": {
     "options": {
       "base": "AccessToken"

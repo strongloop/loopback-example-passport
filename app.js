@@ -42,16 +42,20 @@ try {
 
 var socialLogin = require('./social-login');
 
-for(var provider in config) {
-  var c = config[provider];
+for(var s in config) {
+  var c = config[s];
   c.session = c.session !== false;
-  socialLogin(provider, c);
+  socialLogin(s, c);
 }
 
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-app.get('/auth/account', ensureLoggedIn('/'), function(req, res, next) {
-  res.render('account', {user: req.user});
+app.get('/auth/account', ensureLoggedIn('/login.html'), function(req, res, next) {
+  res.render('loginProfiles', {user: req.user});
+});
+
+app.get('/link/account', ensureLoggedIn('/link.html'), function(req, res, next) {
+  res.render('linkedAccounts', {user: req.user});
 });
 
 app.get('/auth/logout', function(req, res, next) {
