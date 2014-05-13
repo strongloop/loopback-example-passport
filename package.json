@@ -11,7 +11,8 @@
     "passport-facebook": "~1.0.3",
     "connect-ensure-login": "~0.1.1",
     "ejs": "~1.0.0",
-    "passport-google-oauth": "~0.1.5"
+    "passport-google-oauth": "~0.1.5",
+    "passport-oauth2": "~1.1.2"
   },
   "optionalDependencies": {
     "loopback-explorer": "~1.1.0",

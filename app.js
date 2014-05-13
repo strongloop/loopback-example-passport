@@ -58,7 +58,7 @@ app.get('/auth/account', ensureLoggedIn('/login.html'), function(req, res, next)
   res.render('loginProfiles', {user: req.user});
 });
 
-app.get('/link/account', ensureLoggedIn('/link.html'), function(req, res, next) {
+app.get('/link/account', ensureLoggedIn('/login.html'), function(req, res, next) {
   res.render('linkedAccounts', {user: req.user});
 });
 
