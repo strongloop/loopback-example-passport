@@ -20,7 +20,7 @@
           "type": "hasMany",
           "foreignKey": "userId"
         },
-        "linkedAccounts": {
+        "credentials": {
           "model": "userCredential",
           "type": "hasMany",
           "foreignKey": "userId"

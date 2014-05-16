@@ -2,6 +2,9 @@ var loopback = require('loopback');
 var path = require('path');
 var app = module.exports = loopback();
 
+var PassportConfigurator = require('loopback-passport').PassportConfigurator;
+var passportConfigurator = new PassportConfigurator(app);
+
 /*
  * 1. Configure LoopBack models and datasources
  *
@@ -31,21 +34,22 @@ var config = {};
 try {
   config = require('./providers.json');
 } catch(err) {
-  console.error('Please configure your passport strategy in providers.json as follows:');
-  console.error('{ "facebook":');
-  console.error('  { "clientID": "your-facebook-client-id",');
-  console.error('    "clientSecret": "your-facebook-client-secret",');
-  console.error('    "callbackURL": "http://localhost:3000/auth/facebook/callback" }');
-  console.error('}');
+  console.error('Please configure your passport strategy in providers.json.');
+  console.error('Use providers.json.template as the template.');
   process.exit(1);
 }
 
-var socialLogin = require('./social-login');
+passportConfigurator.init();
+passportConfigurator.setupModels({
+  userModel: app.models.user,
+  userIdentityModel: app.models.userIdentity,
+  userCredentialModel: app.models.userCredential
+});
 
 for(var s in config) {
   var c = config[s];
   c.session = c.session !== false;
-  socialLogin(s, c);
+  passportConfigurator.configureProvider(s, c);
 }
 
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
@@ -145,7 +149,9 @@ app.use(loopback.errorHandler());
  */
 
 var swaggerRemote = app.remotes().exports.swagger;
-if (swaggerRemote) swaggerRemote.requireToken = false;
+if (swaggerRemote) {
+  swaggerRemote.requireToken = false;
+}
 
 app.enableAuth();
 

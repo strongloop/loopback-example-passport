@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "loopback": "1.x >=1.7.0",
+    "loopback-passport": "1.x",
     "passport": "~0.2.0",
     "passport-facebook": "~1.0.3",
     "connect-ensure-login": "~0.1.1",
@@ -17,5 +18,9 @@
   "optionalDependencies": {
     "loopback-explorer": "~1.1.0",
     "loopback-push-notification": "~1.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strongloop-community/loopback-example-passport.git"
   }
 }

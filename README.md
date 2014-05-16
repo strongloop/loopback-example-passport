@@ -1,4 +1,4 @@
 loopback-example-passport
 =========================
 
-LoopBack example for passport login modules
+LoopBack example for loopback-passport module.
