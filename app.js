@@ -34,8 +34,8 @@ var config = {};
 try {
   config = require('./providers.json');
 } catch(err) {
-  console.error('Please configure your passport strategy in providers.json.');
-  console.error('Use providers.json.template as the template.');
+  console.error('Please configure your passport strategy in `providers.json`.');
+  console.error('Copy `providers.json.template` to `providers.json` and replace the clientID/clientSecret values with your own.');
   process.exit(1);
 }
 
