@@ -22,6 +22,17 @@
     "successRedirect": "/auth/account",
     "scope": ["email", "profile"]
   },
+  "twitter-login": {
+      "provider": "twitter",
+      "authScheme": "oauth",
+      "module": "passport-twitter",
+      "callbackURL": "http://localhost:3000/auth/twitter/callback",
+      "authPath": "/auth/twitter",
+      "callbackPath": "/auth/twitter/callback",
+      "successRedirect": "/auth/account",
+      "consumerKey": "{twitter-consumer-key}",
+      "consumerSecret": "{twitter-consumer-secret}"
+  },
   "facebook-link": {
     "provider": "facebook",
     "module": "passport-facebook",

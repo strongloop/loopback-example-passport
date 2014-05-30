@@ -6,14 +6,15 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "connect-ensure-login": "~0.1.1",
+    "ejs": "~1.0.0",
     "loopback": "1.x >=1.7.0",
     "loopback-passport": "~1.0.0",
     "passport": "~0.2.0",
     "passport-facebook": "~1.0.3",
-    "connect-ensure-login": "~0.1.1",
-    "ejs": "~1.0.0",
     "passport-google-oauth": "~0.1.5",
-    "passport-oauth2": "~1.1.2"
+    "passport-oauth2": "~1.1.2",
+    "passport-twitter": "~1.0.2"
   },
   "optionalDependencies": {
     "loopback-explorer": "~1.1.0",
