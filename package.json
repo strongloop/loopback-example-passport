@@ -1,6 +1,6 @@
 {
   "name": "loopback-example-passport",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
@@ -9,7 +9,7 @@
     "connect-ensure-login": "~0.1.1",
     "ejs": "~1.0.0",
     "loopback": "1.x >=1.7.0",
-    "loopback-passport": "~1.0.0",
+    "loopback-component-passport": "~1.0.3",
     "passport": "~0.2.0",
     "passport-facebook": "~1.0.3",
     "passport-google-oauth": "~0.1.5",
@@ -17,8 +17,8 @@
     "passport-twitter": "~1.0.2"
   },
   "optionalDependencies": {
-    "loopback-explorer": "~1.1.0",
-    "loopback-push-notification": "~1.2.0"
+    "loopback-explorer": "~1.1.1",
+    "loopback-component-push": "~1.2.2"
   },
   "repository": {
     "type": "git",
