@@ -2,7 +2,7 @@ var loopback = require('loopback');
 var path = require('path');
 var app = module.exports = loopback();
 
-var PassportConfigurator = require('loopback-passport').PassportConfigurator;
+var PassportConfigurator = require('loopback-component-passport').PassportConfigurator;
 var passportConfigurator = new PassportConfigurator(app);
 
 /*
