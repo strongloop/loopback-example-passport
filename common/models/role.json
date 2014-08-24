@@ -1,0 +1,10 @@
+{
+  "name": "role",
+  "plural": "roles",
+  "base": "Role",
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

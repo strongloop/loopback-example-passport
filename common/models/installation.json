@@ -1,0 +1,10 @@
+{
+  "name": "installation",
+  "plural": "installations",
+  "base": "PersistedModel",
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

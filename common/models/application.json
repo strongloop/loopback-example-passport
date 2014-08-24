@@ -1,0 +1,10 @@
+{
+  "name": "application",
+  "plural": "applications",
+  "base": "Application",
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
