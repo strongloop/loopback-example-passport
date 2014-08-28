@@ -6,27 +6,11 @@
       "./node_modules/loopback-component-passport/lib/models"
     ]
   },
-  "User": {
+  "user": {
     "dataSource": "db",
     "public": true
   },
-  "AccessToken": {
-    "dataSource": "db",
-    "public": false
-  },
-  "ACL": {
-    "dataSource": "db",
-    "public": false
-  },
-  "RoleMapping": {
-    "dataSource": "db",
-    "public": false
-  },
-  "Role": {
-    "dataSource": "db",
-    "public": false
-  },
-  "user": {
+  "accessToken": {
     "dataSource": "db",
     "public": true
   },
@@ -35,34 +19,6 @@
     "public": true
   },
   "userIdentity": {
-    "dataSource": "db",
-    "public": true
-  },
-  "accessToken": {
-    "dataSource": "db",
-    "public": true
-  },
-  "application": {
-    "dataSource": "db",
-    "public": true
-  },
-  "acl": {
-    "dataSource": "db",
-    "public": true
-  },
-  "roleMapping": {
-    "dataSource": "db",
-    "public": true
-  },
-  "role": {
-    "dataSource": "db",
-    "public": true
-  },
-  "scope": {
-    "dataSource": "db",
-    "public": true
-  },
-  "installation": {
     "dataSource": "db",
     "public": true
   }

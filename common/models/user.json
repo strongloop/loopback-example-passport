@@ -2,7 +2,7 @@
   "name": "user",
   "plural": "users",
   "base": "User",
-  "properties": {
+  "relations": {
     "accessTokens": {
       "type": "hasMany",
       "model": "accessToken",
@@ -20,7 +20,6 @@
     }
   },
   "validations": [],
-  "relations": {},
   "acls": [],
   "methods": []
 }
