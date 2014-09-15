@@ -23,14 +23,16 @@ app.use(loopback.favicon());
 app.use(loopback.compress());
 
 // -- Add your pre-processing middleware here --
-app.use(loopback.token({
-	model: app.models.accessToken
-}));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // boot scripts mount components like REST API
 boot(app, __dirname);
+
+// The access token is only available after boot
+app.use(loopback.token({
+  model: app.models.accessToken
+}));
 
 app.use(loopback.cookieParser(app.get('cookieSecret')));
 app.use(loopback.session({
