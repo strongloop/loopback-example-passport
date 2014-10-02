@@ -7,6 +7,14 @@ var loopbackPassport = require('loopback-component-passport');
 var PassportConfigurator = loopbackPassport.PassportConfigurator;
 var passportConfigurator = new PassportConfigurator(app);
 
+/*
+ * body-parser is a piece of express middleware that 
+ *   reads a form's input and stores it as a javascript
+ *   object accessible through `req.body` 
+ *
+ */
+var bodyParser = require('body-parser');
+
 // attempt to build the providers/passport config
 var config = {};
 try {
@@ -28,6 +36,13 @@ app.set('view engine', 'ejs');
 
 // boot scripts mount components like REST API
 boot(app, __dirname);
+
+// to support JSON-encoded bodies
+app.use(bodyParser.json());
+// to support URL-encoded bodies
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 
 // The access token is only available after boot
 app.use(loopback.token({
