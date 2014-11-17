@@ -4,7 +4,7 @@ LoopBack example for [loopback-passport](https://github.com/strongloop/loopback-
 LoopBack's user/userIdentity/userCredential models and [passport](http://passportjs.org) to interact with other auth providers.
 
 - Log in or sign up to LoopBack using third party providers (aka social logins)
-- Link third party accounts with a LoopBack user (for example, a LoopBack user can have associated facebook/goole accounts to retrieve pictures).
+- Link third party accounts with a LoopBack user (for example, a LoopBack user can have associated facebook/google accounts to retrieve pictures).
 
 # How to run the application
 
