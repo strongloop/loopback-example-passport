@@ -1,0 +1,9 @@
+extends ../layouts/layout
+
+block head
+  title WhenHub API Server
+
+block content
+  h2 My Linked Accounts
+  p
+    #{JSON.stringify(user.accounts)}

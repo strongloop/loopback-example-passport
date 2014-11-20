@@ -5,7 +5,8 @@
     "usernameField": "username",
     "passwordField": "password",
     "authPath": "/auth/local",
-    "successRedirect": "/auth/account"
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/local"
   },
   "facebook-login": {
     "provider": "facebook",
