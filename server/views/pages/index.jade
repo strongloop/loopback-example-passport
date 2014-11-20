@@ -1,0 +1,23 @@
+extends ../layouts/layout
+
+block head
+  title API Server
+
+block content
+  .jumbotron
+    h1 Loopback API Server
+    p Built using StrongLoop/LoopBack
+    p
+      a.btn.btn-lg.btn-primary(href='http://docs.strongloop.com/display/public/LB/LoopBack#getting-started', role='button') View LoopBack docs »
+
+  .row
+    .col-md-12
+      h1 Sample Functionality
+      p.lead In this sample application you can:
+      ul
+        li
+          a(href='/signup') Signup for a local account
+        li
+          a(href='/login') Login to your account using both a local account or social accounts using OAuth
+        li
+          a(href='/link') Link third party accounts to your account using OAuth

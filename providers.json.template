@@ -1,4 +1,13 @@
 {
+  "local": {
+    "provider": "local",
+    "module": "passport-local",
+    "usernameField": "username",
+    "passwordField": "password",
+    "authPath": "/auth/local",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/local"
+  },
   "facebook-login": {
     "provider": "facebook",
     "module": "passport-facebook",
