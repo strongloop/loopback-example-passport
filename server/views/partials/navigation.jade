@@ -6,23 +6,19 @@ nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') LoopBack API
+      a.navbar-brand(href='/') LoopBack
     #navbar.navbar-collapse.collapse
       if user
-        //- User Logged In
+        //- User *is* logged In
         ul.nav.navbar-nav.navbar-right
           li
             a(href='/explorer') API Explorer
           li(class=url=='/auth/account'?'active':undefined)
             a(href='/auth/account') View Account
-          li(class=url=='/link/account'?'active':undefined)
-            a(href='/link/account') View Linked Accounts
-          li(class=url=='/link'?'active':undefined)
-            a(href='/link') Link Accounts
           li
             a(href='/auth/logout') Log Out
       else
-        //- User Not Logged In
+        //- User is *not* Logged In
         ul.nav.navbar-nav.navbar-right
           li(class=url=='/'?'active':undefined)
             a(href='/') Home
