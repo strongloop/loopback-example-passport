@@ -1,8 +1,5 @@
 extends ../layouts/layout
 
-block head
-  title WhenHub API Server
-
 block content
   .row
     .col-md-6.col-md-offset-3
@@ -15,62 +12,19 @@ block content
           li
             a(href='/auth/logout') Log Out
 
-      form#newuser(role='form', action='/api/users', method='post')
+      //- form#newuser(role='form', action='/api/users', method='post')
+      form(role='form', action='/signup', method='post')
         .form-group
           label(for='username') Your Name
-          input#username.form-control(type='text', name='username', placeholder='Enter your name')
+          input.form-control(type='text', name='username', placeholder='Enter your name')
         .form-group
           label(for='email') Your Email address
-          input#Email.form-control(type='email', name='email', placeholder='Enter your email address')
+          input.form-control(type='email', name='email', placeholder='Enter your email address')
         .form-group
           label(for='password') Your Password
-          input#password.form-control(type='password', name='password', placeholder='Password')
+          input.form-control(type='password', name='password', placeholder='Password')
         button.btn.btn-default(type='submit') Submit
-
-      #result
-
-block scripts
-  script.
-    $(document).ready(function() {
-
-      // Attach a submit handler to the form
-      $( "#newuser" ).submit(function (event) {
-
-        // Stop form from submitting normally
-        event.preventDefault();
-
-        // Get some values from elements on the page:
-        var $form = $( this ),
-        url = $form.attr( "action" );
-        method = $form.attr( "method" );
-
-        // Post new user
-        $.ajax({
-          type: method,
-          url: url,
-          data: $form.serialize(),
-          dataType: 'json',
-          success: function () {
-
-            // Now log user in?
-            //
-
-            //- $.ajax({
-            //-   type: 'post',
-            //-   url: '/auth/local',
-            //-   dataType: 'json',
-            //-   data: $form.serialize(),
-            //-   success: function () {
-            //-   }
-            //- });
-
-          },
-          error: function (err) {
-            console.log(err);
-          }
-        }).done(function() {
-          window.location.href = '/';
-        });
-      });
-    });
-
+      br
+      if (messages.error)
+        p
+          span(style="color:red")= messages.error

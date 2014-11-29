@@ -15,6 +15,16 @@ var passportConfigurator = new PassportConfigurator(app);
  */
 var bodyParser = require('body-parser');
 
+/**
+ * Flash messages for passport
+ *
+ * Setting the failureFlash option to true instructs Passport to flash an
+ * error message using the message given by the strategy's verify callback,
+ * if any. This is often the best approach, because the verify callback
+ * can make the most accurate determination of why authentication failed.
+ */
+var flash      = require('express-flash');
+
 // attempt to build the providers/passport config
 var config = {};
 try {
@@ -60,6 +70,9 @@ app.use(loopback.session({
 }));
 passportConfigurator.init();
 
+// We need flash messages to see passport errors
+app.use(flash());
+
 passportConfigurator.setupModels({
 	userModel: app.models.user,
 	userIdentityModel: app.models.userIdentity,
@@ -104,6 +117,35 @@ app.get('/signup', function (req, res, next){
   res.render('pages/signup', {
     user: req.user,
     url: req.url
+  });
+});
+
+app.post('/signup', function (req, res, next) {
+
+  var User = app.models.user;
+
+  var newUser = {};
+  newUser.email = req.body.email.toLowerCase();
+  newUser.username = req.body.username.trim();
+  newUser.password = req.body.password;
+
+  User.create(newUser, function (err, user) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('back');
+    } else {
+      // Passport exposes a login() function on req (also aliased as logIn())
+      // that can be used to establish a login session. This function is
+      // primarily used when users sign up, during which req.login() can
+      // be invoked to log in the newly registered user.
+      req.login(user, function (err) {
+        if (err) {
+          req.flash('error', err.message);
+          return res.redirect('back');
+        }
+        return res.redirect('/auth/account');
+      });
+    }
   });
 });
 
