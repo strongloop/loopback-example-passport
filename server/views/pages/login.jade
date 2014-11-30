@@ -13,3 +13,7 @@ block content
           a.btn.btn-primary(href="/auth/google") Login with Google
         li
           a.btn.btn-primary(href="/auth/twitter") Login with Twitter
+      br
+      if (messages.error)
+        p
+          span(style="color:red")= messages.error
