@@ -83,6 +83,7 @@ for (var s in config) {
 	c.session = c.session !== false;
 	passportConfigurator.configureProvider(s, c);
 }
+
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 app.get('/', function (req, res, next) {
@@ -92,15 +93,8 @@ app.get('/', function (req, res, next) {
   });
 });
 
-app.get('/auth/account', ensureLoggedIn('/login.html'), function (req, res, next) {
+app.get('/auth/account', ensureLoggedIn('/login'), function (req, res, next) {
   res.render('pages/loginProfiles', {
-    user: req.user,
-    url: req.url
-  });
-});
-
-app.get('/link/account', ensureLoggedIn('/login.html'), function (req, res, next) {
-  res.render('pages/linkedAccounts', {
     user: req.user,
     url: req.url
   });
@@ -111,6 +105,18 @@ app.get('/local', function (req, res, next){
     user: req.user,
     url: req.url
   });
+});
+
+app.get('/login', function (req, res, next){
+  res.render('pages/login', {
+    user: req.user,
+    url: req.url
+   });
+});
+
+app.get('/auth/logout', function (req, res, next) {
+  req.logout();
+  res.redirect('/');
 });
 
 app.get('/signup', function (req, res, next){
@@ -147,25 +153,6 @@ app.post('/signup', function (req, res, next) {
       });
     }
   });
-});
-
-app.get('/login', function (req, res, next){
-  res.render('pages/login', {
-    user: req.user,
-    url: req.url
-   });
-});
-
-app.get('/link', function (req, res, next){
-  res.render('pages/link', {
-    user: req.user,
-    url: req.url
-  });
-});
-
-app.get('/auth/logout', function (req, res, next) {
-  req.logout();
-  res.redirect('/');
 });
 
 // -- Mount static files here--
