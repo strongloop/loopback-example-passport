@@ -1,1 +1,0 @@
-node_modules/loopback-component-passport/lib/passport-configurator.js:158:  var successRedirect = options.successRedirect || (link ? '/link/account' : '/auth/account');
