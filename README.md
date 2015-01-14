@@ -9,7 +9,7 @@ LoopBack's user/userIdentity/userCredential models and [passport](http://passpor
 # How to run the application
 
 ```
-git clone git@github.com:strongloop-community/loopback-example-passport.git
+git clone git@github.com:strongloop/loopback-example-passport.git
 cd loopback-example-passport
 npm install
 ```
