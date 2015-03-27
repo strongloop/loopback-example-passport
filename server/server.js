@@ -47,6 +47,9 @@ var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// init passport before boot
+passportConfigurator.init();
+
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
@@ -68,7 +71,6 @@ app.use(loopback.session({
 	saveUninitialized: true,
 	resave: true
 }));
-passportConfigurator.init();
 
 // We need flash messages to see passport errors
 app.use(flash());
