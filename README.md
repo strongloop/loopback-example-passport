@@ -27,7 +27,7 @@ $ npm install
 ## Run the application
 
 ```
-node . 
+$ node . 
 ```
 
 Open your browser to http://127.0.0.1:3000
