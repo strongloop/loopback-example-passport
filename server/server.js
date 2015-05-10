@@ -7,13 +7,16 @@ var loopbackPassport = require('loopback-component-passport');
 var PassportConfigurator = loopbackPassport.PassportConfigurator;
 var passportConfigurator = new PassportConfigurator(app);
 
+// load the middleware - pass the loopack object and the app instance
+require(__dirname + '/middleware.js')(loopback, app)
+
 /*
  * body-parser is a piece of express middleware that
  *   reads a form's input and stores it as a javascript
  *   object accessible through `req.body`
  *
  */
-var bodyParser = require('body-parser');
+//var bodyParser = require('body-parser');
 
 /**
  * Flash messages for passport
@@ -23,7 +26,7 @@ var bodyParser = require('body-parser');
  * if any. This is often the best approach, because the verify callback
  * can make the most accurate determination of why authentication failed.
  */
-var flash      = require('express-flash');
+//var flash      = require('express-flash');
 
 // attempt to build the providers/passport config
 var config = {};
@@ -34,11 +37,11 @@ try {
 	process.exit(1); // fatal
 }
 
-// Set up the /favicon.ico
-app.use(loopback.favicon());
+// // Set up the /favicon.ico
+// app.use(loopback.favicon());
 
-// request pre-processing middleware
-app.use(loopback.compress());
+// // request pre-processing middleware
+// app.use(loopback.compress());
 
 // -- Add your pre-processing middleware here --
 
@@ -50,28 +53,29 @@ app.set('view engine', 'jade');
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
-// to support JSON-encoded bodies
-app.use(bodyParser.json());
-// to support URL-encoded bodies
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
+// // to support JSON-encoded bodies
+// app.use(bodyParser.json());
+// // to support URL-encoded bodies
+// app.use(bodyParser.urlencoded({
+// 	extended: true
+// }));
 
 // The access token is only available after boot
-app.use(loopback.token({
-  model: app.models.accessToken
-}));
+// app.use(loopback.token({
+//   model: app.models.accessToken
+// }));
 
-app.use(loopback.cookieParser(app.get('cookieSecret')));
-app.use(loopback.session({
-	secret: 'kitty',
-	saveUninitialized: true,
-	resave: true
-}));
+// app.use(loopback.cookieParser(app.get('cookieSecret')));
+// app.use(loopback.session({
+// 	secret: 'kitty',
+// 	saveUninitialized: true,
+// 	resave: true
+// }));
+
 passportConfigurator.init();
 
-// We need flash messages to see passport errors
-app.use(flash());
+// // We need flash messages to see passport errors
+// app.use(flash());
 
 passportConfigurator.setupModels({
 	userModel: app.models.user,
@@ -172,16 +176,16 @@ app.get('/auth/logout', function (req, res, next) {
 // All static middleware should be registered at the end, as all requests
 // passing the static middleware are hitting the file system
 // Example:
-var path = require('path');
-app.use(loopback.static(path.resolve(__dirname, '../client/public')));
+//var path = require('path');
+//app.use(loopback.static(path.resolve(__dirname, '../client/public')));
 
 // Requests that get this far won't be handled
 // by any middleware. Convert them into a 404 error
 // that will be handled later down the chain.
-app.use(loopback.urlNotFound());
+// app.use(loopback.urlNotFound());
 
-// The ultimate error handler.
-app.use(loopback.errorHandler());
+// // The ultimate error handler.
+// app.use(loopback.errorHandler());
 
 app.start = function() {
 	// start the web server
