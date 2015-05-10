@@ -9,9 +9,9 @@ LoopBack's user/userIdentity/userCredential models and [passport](http://passpor
 # How to run the application
 
 ```
-git clone git@github.com:strongloop/loopback-example-passport.git
-cd loopback-example-passport
-npm install
+$ git clone git@github.com:strongloop/loopback-example-passport.git
+$ cd loopback-example-passport
+$ npm install
 ```
 
 ## Get your client ids/secrets from facebook & google
@@ -27,7 +27,7 @@ npm install
 ## Run the application
 
 ```
-node . 
+$ node . 
 ```
 
 Open your browser to http://127.0.0.1:3000
