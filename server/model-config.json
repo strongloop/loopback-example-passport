@@ -2,8 +2,7 @@
   "_meta": {
     "sources": [
       "../common/models",
-      "./models",
-      "./node_modules/loopback-component-passport/lib/models"
+      "./models"
     ]
   },
   "user": {
