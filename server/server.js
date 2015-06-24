@@ -34,12 +34,6 @@ try {
 	process.exit(1); // fatal
 }
 
-// Set up the /favicon.ico
-app.use(loopback.favicon());
-
-// request pre-processing middleware
-app.use(loopback.compress());
-
 // -- Add your pre-processing middleware here --
 
 // Setup the view engine (jade)
@@ -51,19 +45,19 @@ app.set('view engine', 'jade');
 boot(app, __dirname);
 
 // to support JSON-encoded bodies
-app.use(bodyParser.json());
+app.middleware('parse', bodyParser.json());
 // to support URL-encoded bodies
-app.use(bodyParser.urlencoded({
+app.middleware('parse', bodyParser.urlencoded({
 	extended: true
 }));
 
 // The access token is only available after boot
-app.use(loopback.token({
+app.middleware('auth', loopback.token({
   model: app.models.accessToken
 }));
 
-app.use(loopback.cookieParser(app.get('cookieSecret')));
-app.use(loopback.session({
+app.middleware('session:before', loopback.cookieParser(app.get('cookieSecret')));
+app.middleware('session', loopback.session({
 	secret: 'kitty',
 	saveUninitialized: true,
 	resave: true
