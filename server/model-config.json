@@ -12,15 +12,15 @@
   },
   "accessToken": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "userCredential": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "userIdentity": {
     "dataSource": "db",
-    "public": true
+    "public": false
   },
   "ACL": {
     "dataSource": "db",
