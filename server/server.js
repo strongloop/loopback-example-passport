@@ -93,13 +93,6 @@ app.get('/auth/account', ensureLoggedIn('/login'), function (req, res, next) {
   });
 });
 
-app.get('/link/account', ensureLoggedIn('/login'), function (req, res, next) {
-  res.render('pages/linkedAccounts', {
-    user: req.user,
-    url: req.url
-  });
-});
-
 app.get('/local', function (req, res, next){
   res.render('pages/local', {
     user: req.user,
