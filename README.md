@@ -125,3 +125,7 @@ $ node .
 - Open your browser to `http://localhost:3000`
 - Click on 'Login with Facebook'.
 - Sign up using a local account, then link to your Facebook account.
+
+---
+
+[More LoopBack examples](https://github.com/strongloop/loopback-example)
