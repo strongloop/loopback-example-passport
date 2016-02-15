@@ -10,10 +10,10 @@ var passportConfigurator = new PassportConfigurator(app);
 // attempt to build the providers/passport config
 var config = {};
 try {
-	config = require('../providers.json');
+  config = require('../providers.json');
 } catch (err) {
-	console.trace(err);
-	process.exit(1); // fatal
+  console.trace(err);
+  process.exit(1); // fatal
 }
 
 // -- Add your pre-processing middleware here --
@@ -33,14 +33,14 @@ app.middleware('auth', loopback.token({
 
 passportConfigurator.init();
 passportConfigurator.setupModels({
-	userModel: app.models.user,
-	userIdentityModel: app.models.userIdentity,
-	userCredentialModel: app.models.userCredential
+  userModel: app.models.user,
+  userIdentityModel: app.models.userIdentity,
+  userCredentialModel: app.models.userCredential
 });
 for (var s in config) {
-	var c = config[s];
-	c.session = c.session !== false;
-	passportConfigurator.configureProvider(s, c);
+  var c = config[s];
+  c.session = c.session !== false;
+  passportConfigurator.configureProvider(s, c);
 }
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
@@ -53,13 +53,6 @@ app.get('/', function (req, res, next) {
 
 app.get('/auth/account', ensureLoggedIn('/login'), function (req, res, next) {
   res.render('pages/loginProfiles', {
-    user: req.user,
-    url: req.url
-  });
-});
-
-app.get('/link/account', ensureLoggedIn('/login'), function (req, res, next) {
-  res.render('pages/linkedAccounts', {
     user: req.user,
     url: req.url
   });
@@ -115,27 +108,25 @@ app.get('/login', function (req, res, next){
    });
 });
 
-app.get('/link', function (req, res, next){
-  res.render('pages/link', {
-    user: req.user,
-    url: req.url
-  });
-});
-
 app.get('/auth/logout', function (req, res, next) {
   req.logout();
   res.redirect('/');
 });
 
 app.start = function() {
-	// start the web server
-	return app.listen(function() {
-		app.emit('started');
-		console.log('Web server listening at: %s', app.get('url'));
-	});
+  // start the web server
+  return app.listen(function() {
+    app.emit('started');
+    var baseUrl = app.get('url').replace(/\/$/, '');
+    console.log('Web server listening at: %s', baseUrl);
+    if (app.get('loopback-component-explorer')) {
+      var explorerPath = app.get('loopback-component-explorer').mountPath;
+      console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
+    }
+  });
 };
 
 // start the server if `$ node server.js`
 if (require.main === module) {
-	app.start();
+  app.start();
 }
