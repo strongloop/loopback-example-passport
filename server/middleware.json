@@ -4,6 +4,7 @@
   },
   "initial": {
     "compression": {},
+    "express-flash": {},
     "cors": {
       "params": {
         "origin": true,
@@ -12,9 +13,29 @@
       }
     }
   },
-  "session": {},
+  "session:before": {
+    "loopback#cookieParser": {
+        "params": "${cookieSecret}"
+    }
+  },
+  "session": {
+    "loopback#session": {
+      "params": {
+        "secret": "kitty",
+        "saveUninitialized": true,
+        "resave": true
+      }
+    }
+  },
   "auth": {},
-  "parse": {},
+  "parse": {
+    "body-parser#json": {},
+    "body-parser#urlencoded": {
+      "params": {
+        "extended": true
+      }
+    }
+  },
   "routes": {
     "loopback#rest": {
       "paths": [
@@ -22,7 +43,11 @@
       ]
     }
   },
-  "files": {},
+  "files": {
+      "loopback#static": {
+      "params": "$!../client/public"
+    }
+  },
   "final": {
     "loopback#urlNotFound": {}
   },
