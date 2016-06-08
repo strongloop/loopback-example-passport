@@ -3,7 +3,9 @@
   "version": "2.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "lint": "eslint .",
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "body-parser": "^1.9.0",
@@ -26,6 +28,10 @@
     "passport-twitter": "^1.0.2",
     "serve-favicon": "^2.0.1",
     "loopback-component-explorer": "^2.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.5.3",
+    "eslint-config-loopback": "^4.0.0"
   },
   "repository": {
     "type": "git",
