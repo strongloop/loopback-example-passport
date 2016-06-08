@@ -2,6 +2,7 @@
 // Node module: loopback-example-passport
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
+'use strict';
 
 var loopback = require('loopback');
 var boot = require('loopback-boot');
@@ -53,19 +54,19 @@ boot(app, __dirname);
 app.middleware('parse', bodyParser.json());
 // to support URL-encoded bodies
 app.middleware('parse', bodyParser.urlencoded({
-  extended: true
+  extended: true,
 }));
 
 // The access token is only available after boot
 app.middleware('auth', loopback.token({
-  model: app.models.accessToken
+  model: app.models.accessToken,
 }));
 
 app.middleware('session:before', loopback.cookieParser(app.get('cookieSecret')));
 app.middleware('session', loopback.session({
   secret: 'kitty',
   saveUninitialized: true,
-  resave: true
+  resave: true,
 }));
 passportConfigurator.init();
 
@@ -75,7 +76,7 @@ app.use(flash());
 passportConfigurator.setupModels({
   userModel: app.models.user,
   userIdentityModel: app.models.userIdentity,
-  userCredentialModel: app.models.userCredential
+  userCredentialModel: app.models.userCredential,
 });
 for (var s in config) {
   var c = config[s];
@@ -84,36 +85,35 @@ for (var s in config) {
 }
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
-app.get('/', function (req, res, next) {
+app.get('/', function(req, res, next) {
   res.render('pages/index', {user:
     req.user,
-    url: req.url
+    url: req.url,
   });
 });
 
-app.get('/auth/account', ensureLoggedIn('/login'), function (req, res, next) {
+app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
   res.render('pages/loginProfiles', {
     user: req.user,
-    url: req.url
+    url: req.url,
   });
 });
 
-app.get('/local', function (req, res, next){
+app.get('/local', function(req, res, next) {
   res.render('pages/local', {
     user: req.user,
-    url: req.url
+    url: req.url,
   });
 });
 
-app.get('/signup', function (req, res, next){
+app.get('/signup', function(req, res, next) {
   res.render('pages/signup', {
     user: req.user,
-    url: req.url
+    url: req.url,
   });
 });
 
-app.post('/signup', function (req, res, next) {
-
+app.post('/signup', function(req, res, next) {
   var User = app.models.user;
 
   var newUser = {};
@@ -121,7 +121,7 @@ app.post('/signup', function (req, res, next) {
   newUser.username = req.body.username.trim();
   newUser.password = req.body.password;
 
-  User.create(newUser, function (err, user) {
+  User.create(newUser, function(err, user) {
     if (err) {
       req.flash('error', err.message);
       return res.redirect('back');
@@ -130,7 +130,7 @@ app.post('/signup', function (req, res, next) {
       // that can be used to establish a login session. This function is
       // primarily used when users sign up, during which req.login() can
       // be invoked to log in the newly registered user.
-      req.login(user, function (err) {
+      req.login(user, function(err) {
         if (err) {
           req.flash('error', err.message);
           return res.redirect('back');
@@ -141,14 +141,14 @@ app.post('/signup', function (req, res, next) {
   });
 });
 
-app.get('/login', function (req, res, next){
+app.get('/login', function(req, res, next) {
   res.render('pages/login', {
     user: req.user,
-    url: req.url
-   });
+    url: req.url,
+  });
 });
 
-app.get('/auth/logout', function (req, res, next) {
+app.get('/auth/logout', function(req, res, next) {
   req.logout();
   res.redirect('/');
 });
