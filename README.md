@@ -87,18 +87,15 @@ $ npm install
 ```
 ### 4. Facebook profile info
 
-If you require additional information from a Facebook profile such as a name or a gender, you can obtain it by updating `node_modules\passport-facebook\lib\strategy.js`and replacing:
+In a recent update, Facebook no longer returns all fields by default (email, gender, timezone, etc).
+If you need more information, modify the providers template.
+
+The current template contains:
+```
+"profileFields": ["gender", "link", "locale", "name", "timezone", "verified", "email", "updated_time"],
 
 ```
-this._profileURL = options.profileURL || 'https://graph.facebook.com/me';
-```
-
-with
-
-```
-this._profileURL = options.profileURL ||
-    'https://graph.facebook.com/v2.2/me?fields=first_name,gender,last_name,link,locale,name,timezone,verified,email,updated_time';
-```
+We recommend modifying the fields to suit your needs. For more information regarding the providers template, see http://loopback.io/doc/en/lb2/Configuring-providers.json.html.
 
 ### 5. Data file
 
