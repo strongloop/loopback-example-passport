@@ -56,35 +56,36 @@ $ npm install
 - Copy providers.json.template to providers.json
 - Update providers.json with your own values for `clientID/clientSecret`.
 
-```
-"facebook-login": {
-  "provider": "facebook",
-  "module": "passport-facebook",
-  "clientID": "xxxxxxxxxxxxxxx",
-  "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "callbackURL": "/auth/facebook/callback",
-  "authPath": "/auth/facebook",
-  "callbackPath": "/auth/facebook/callback",
-  "successRedirect": "/auth/account",
-  "failureRedirect": "/login",
-  "scope": ["email"],
-  "failureFlash": true
-},
-"facebook-link": {
-  "provider": "facebook",
-  "module": "passport-facebook",
-  "clientID": "xxxxxxxxxxxxxxx",
-  "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "callbackURL": "/link/facebook/callback",
-  "authPath": "/link/facebook",
-  "callbackPath": "/link/facebook/callback",
-  "successRedirect": "/auth/account",
-  "failureRedirect": "/login",
-  "scope": ["email", "user_likes"],
-  "link": true,
-  "failureFlash": true
-}
-```
+  ```
+  "facebook-login": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "xxxxxxxxxxxxxxx",
+    "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "callbackURL": "/auth/facebook/callback",
+    "authPath": "/auth/facebook",
+    "callbackPath": "/auth/facebook/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": ["email"],
+    "failureFlash": true
+  },
+  "facebook-link": {
+    "provider": "facebook",
+    "module": "passport-facebook",
+    "clientID": "xxxxxxxxxxxxxxx",
+    "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "callbackURL": "/link/facebook/callback",
+    "authPath": "/link/facebook",
+    "callbackPath": "/link/facebook/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": ["email", "user_likes"],
+    "link": true,
+    "failureFlash": true
+  }
+  ```
+
 ### 4. Facebook profile info
 
 In a recent update, Facebook no longer returns all fields by default (email, gender, timezone, etc).
