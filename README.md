@@ -116,6 +116,27 @@ after
 
 ### 6. Run the application
 
+Fit the server/datasources.json to your needs.
+```
+"transports": [{
+  "type": "smtp",
+  "host": "mail.yourserver.com",
+  "secure": false,
+  "port": 587,
+  "tls": {
+    "rejectUnauthorized": false
+  },
+  "auth": {
+    "user": "login@yourserver.com",
+    "pass": "yourpassword"
+  }
+}]
+```
+
+Important: Without a valid mail server, the register will not work!
+
+### 7. Run the application
+
 ```
 $ node .
 ```

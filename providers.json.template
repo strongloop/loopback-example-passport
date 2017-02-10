@@ -51,6 +51,19 @@
     "consumerSecret": "{twitter-consumer-secret}",
     "failureFlash": true
   },
+  "stripe-login": {
+    "provider": "stripe",
+    "module": "passport-stripe",
+    "clientID": ""{stripe-client-id}",
+    "clientSecret": ""{stripe-client-secret}",
+    "callbackURL": "http://localhost:3000/auth/stripe/callback",
+    "authPath": "/auth/stripe",
+    "callbackPath": "/auth/stripe/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": "read_write",
+    "failureFlash": true
+  },
   "facebook-link": {
     "provider": "facebook",
     "module": "passport-facebook",
@@ -77,6 +90,20 @@
     "successRedirect": "/auth/account",
     "failureRedirect": "/login",
     "scope": ["email", "profile"],
+    "link": true,
+    "failureFlash": true
+  },
+  "stripe-link": {
+    "provider": "stripe",
+    "module": "passport-stripe",
+    "clientID": "{stripe-client-id}",
+    "clientSecret": "{stripe-client-secret}",
+    "callbackURL":  "http://localhost:3000/link/stripe/callback",
+    "authPath": "/link/stripe",
+    "callbackPath": "/link/stripe/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": "read_write",
     "link": true,
     "failureFlash": true
   }
