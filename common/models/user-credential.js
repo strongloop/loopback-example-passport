@@ -66,6 +66,6 @@ module.exports = function(PassportUserCredential) {
         externalId: data.externalId,
       },
     };
-    PassportUserIdentity.findOrCreate(filter, data, next);
+    PassportUserIdentity.findOrCreate(filter, data, {skipAfterSave: true}, next);
   });
 };

@@ -1,0 +1,30 @@
+{
+  "ids": {
+    "user": 2,
+    "accessToken": 2,
+    "userCredential": 3,
+    "userIdentity": 3,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1
+  },
+  "models": {
+    "user": {
+      "1": "{\"username\":\"\",\"password\":\"$2a$10$IxPcGQkvo5uPqznZ.ICFYeyRDgE0XRmk3h6poaSS9zuMe9UUX95S.\",\"email\":\"info@schmidigital.de\",\"id\":1,\"verificationToken\":\"37252f398ad6f46100b879724d241fdf6c63bcb5ccc39a4c172073907f26e20f6a5f554bbe5ca55f9e97322017030f686fb80c0764d55bdfa129018e07ad06c6\"}"
+    },
+    "accessToken": {
+      "CE1Nmyxgl7zEAYvAEJaxWe3iL4OyBrVvEMBgA9H8qdNoYSPgZddhVgbIknp8xKAT": "{\"id\":\"CE1Nmyxgl7zEAYvAEJaxWe3iL4OyBrVvEMBgA9H8qdNoYSPgZddhVgbIknp8xKAT\",\"ttl\":1209600,\"created\":\"2017-02-11T10:00:45.201Z\",\"userId\":1}"
+    },
+    "userCredential": {
+      "1": "{\"provider\":\"facebook\",\"authScheme\":\"oAuth 2.0\",\"externalId\":\"841911675946625\",\"profile\":{\"id\":\"841911675946625\",\"displayName\":\"Michael Smith\",\"name\":{},\"provider\":\"facebook\",\"_raw\":\"{\\\"name\\\":\\\"Michael Smith\\\",\\\"id\\\":\\\"841911675946625\\\"}\",\"_json\":{\"name\":\"Michael Smith\",\"id\":\"841911675946625\"}},\"credentials\":{\"accessToken\":\"EAAUZCRmzJ5WABAPGeZCuQjXGespWU1ssSeKhvSiNDt0eTKVdZAZAhomND39QabnlcTNbYPRmaEl9EQ8MYvkR8eFGcZAWlNtcDt3e27vsN7IZAXKDc6if8dQwrrD6FUUSaTOGfRgOjGsyhmAmQQVzbhaRjHQeXDHct32Ag21ourSAZDZD\"},\"created\":\"2017-02-11T09:59:52.639Z\",\"modified\":\"2017-02-11T10:00:37.320Z\",\"userId\":1,\"id\":1}",
+      "2": "{\"provider\":\"stripe\",\"authScheme\":\"oAuth 2.0\",\"profile\":{\"token_type\":\"bearer\",\"stripe_publishable_key\":\"pk_test_gthsKSdSuOAKaDulfZvAotWo\",\"scope\":\"read_write\",\"livemode\":null,\"stripe_user_id\":\"acct_19kurlIVAdaMrbeH\"},\"credentials\":{\"accessToken\":\"sk_test_Q4NxJtxu0PSe6SXA1Qnn9STY\",\"refreshToken\":\"rt_A69iGJyV21Ppqop7LfkgLH70t4bPBvWsoDhe9k5oK7SwLGn7\"},\"created\":\"2017-02-11T10:00:16.603Z\",\"modified\":\"2017-02-11T10:00:21.907Z\",\"userId\":1,\"id\":2}"
+    },
+    "userIdentity": {
+      "1": "{\"provider\":\"facebook\",\"authScheme\":\"oAuth 2.0\",\"externalId\":\"841911675946625\",\"profile\":{\"id\":\"841911675946625\",\"name\":{\"familyName\":\"Smith\",\"givenName\":\"Michael\"},\"gender\":\"male\",\"profileUrl\":\"https://www.facebook.com/app_scoped_user_id/841911675946625/\",\"emails\":[{\"value\":\"pulseofminority@googlemail.com\"}],\"provider\":\"facebook\",\"_raw\":\"{\\\"gender\\\":\\\"male\\\",\\\"link\\\":\\\"https:\\\\/\\\\/www.facebook.com\\\\/app_scoped_user_id\\\\/841911675946625\\\\/\\\",\\\"locale\\\":\\\"en_US\\\",\\\"last_name\\\":\\\"Smith\\\",\\\"first_name\\\":\\\"Michael\\\",\\\"timezone\\\":1,\\\"verified\\\":true,\\\"email\\\":\\\"pulseofminority\\\\u0040googlemail.com\\\",\\\"updated_time\\\":\\\"2015-06-20T22:16:55+0000\\\",\\\"id\\\":\\\"841911675946625\\\"}\",\"_json\":{\"gender\":\"male\",\"link\":\"https://www.facebook.com/app_scoped_user_id/841911675946625/\",\"locale\":\"en_US\",\"last_name\":\"Smith\",\"first_name\":\"Michael\",\"timezone\":1,\"verified\":true,\"email\":\"pulseofminority@googlemail.com\",\"updated_time\":\"2015-06-20T22:16:55+0000\",\"id\":\"841911675946625\"}},\"credentials\":{\"accessToken\":\"EAAUZCRmzJ5WABAEdhiqcwaLhVcGNQTZBRxyIliqM63uKnrX3dwqtwxAriiw6vAr5UBxFgZBpXMYbdTp3GPmBwsLf7vCNtSuDhGW9EskNxekZAr7JGnpb3KUSzlGyG3hSekof6aGnDmN6hs5BMJOZBo73I8BgZASNPLZCffwQKnT1wZDZD\"},\"created\":\"2017-02-11T09:59:52.639Z\",\"modified\":\"2017-02-11T10:00:45.196Z\",\"userId\":1,\"id\":1}",
+      "2": "{\"provider\":\"stripe\",\"authScheme\":\"oAuth 2.0\",\"profile\":{\"token_type\":\"bearer\",\"stripe_publishable_key\":\"pk_test_gthsKSdSuOAKaDulfZvAotWo\",\"scope\":\"read_write\",\"livemode\":null,\"stripe_user_id\":\"acct_19kurlIVAdaMrbeH\"},\"credentials\":{\"accessToken\":\"sk_test_Q4NxJtxu0PSe6SXA1Qnn9STY\",\"refreshToken\":\"rt_A69iGJyV21Ppqop7LfkgLH70t4bPBvWsoDhe9k5oK7SwLGn7\"},\"created\":\"2017-02-11T10:00:16.603Z\",\"modified\":\"2017-02-11T10:00:16.603Z\",\"userId\":1,\"id\":2}"
+    },
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {}
+  }
+}
