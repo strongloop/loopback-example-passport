@@ -22,7 +22,7 @@ module.exports = function(user) {
   user.observe('after save', function(context, next) {
     console.log('> user.afterSave triggered');
 
-    if (context.isNewInstance) {
+    if (context.isNewInstance && !context.instance.emailVerified) {
       var options = {
         type: 'email',
         to: context.instance.email,

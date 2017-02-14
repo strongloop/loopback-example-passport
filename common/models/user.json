@@ -2,6 +2,8 @@
   "name": "user",
   "plural": "users",
   "base": "User",
+  "properties": {},
+  "validations": [],
   "relations": {
     "accessTokens": {
       "type": "hasMany",
@@ -19,7 +21,13 @@
       "foreignKey": "userId"
     }
   },
-  "validations": [],
-  "acls": [],
-  "methods": []
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
 }
