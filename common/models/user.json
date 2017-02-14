@@ -21,13 +21,7 @@
       "foreignKey": "userId"
     }
   },
-  "acls": [
-    {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "$owner",
-      "permission": "ALLOW"
-    }
-  ],
-  "methods": {}
+  "validations": [],
+  "acls": [],
+  "methods": []
 }
