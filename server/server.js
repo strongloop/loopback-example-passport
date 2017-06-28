@@ -75,11 +75,6 @@ passportConfigurator.init();
 // We need flash messages to see passport errors
 app.use(flash());
 
-passportConfigurator.setupModels({
-  userModel: app.models.user,
-  userIdentityModel: app.models.userIdentity,
-  userCredentialModel: app.models.userCredential,
-});
 for (var s in config) {
   var c = config[s];
   c.session = c.session !== false;
@@ -137,7 +132,14 @@ app.post('/signup', function(req, res, next) {
           req.flash('error', err.message);
           return res.redirect('back');
         }
-        return res.redirect('/auth/account');
+        res.render('response', {
+          title: 'Signed up successfully',
+          content: 'Please check your email and click on the verification link ' +
+              'before logging in.',
+          redirectTo: '/',
+          redirectToLinkText: 'Log in',
+        });
+        // return res.redirect('/auth/account');
       });
     }
   });
@@ -155,8 +157,12 @@ app.get('/auth/logout', function(req, res, next) {
   res.redirect('/');
 });
 
+app.get('/verified', function(req, res) {
+  res.render('verified');
+});
+
+// start the web server
 app.start = function() {
-  // start the web server
   return app.listen(function() {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
@@ -168,7 +174,22 @@ app.start = function() {
   });
 };
 
-// start the server if `$ node server.js`
-if (require.main === module) {
-  app.start();
-}
+boot(app, __dirname, function(err) {
+  if (err) throw err;
+  // start the server if `$ node server.js`
+  if (require.main === module) {
+    app.start();
+  }
+
+  passportConfigurator.setupModels({
+    userModel: app.models.user,
+    userIdentityModel: app.models.userIdentity,
+    userCredentialModel: app.models.userCredential,
+  });
+
+  for (var key in config) {
+    var provider = config[key];
+    provider.session = provider.session !== false;
+    passportConfigurator.configureProvider(key, provider);
+  }
+});

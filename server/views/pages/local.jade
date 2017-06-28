@@ -12,6 +12,6 @@ block content
           input#password.form-control(type='password', name='password', placeholder='Password')
         button.btn.btn-default(type='submit') Submit
       br
-      if (messages.error)
+      if (messages && messages.error)
         p
           span(style="color:red")= messages.error

@@ -1,6 +1,26 @@
 {
   "db": {
     "name": "db",
-    "connector": "memory"
+    "connector": "memory",
+    "file":"db.json"
+  },
+  "emailDs": {
+    "name": "emailDs",
+    "connector": "mail",
+    "transports": [
+      {
+        "type": "smtp",
+        "host": "mail.your-server.com",
+        "secure": false,
+        "port": 587,
+        "tls": {
+          "rejectUnauthorized": false
+        },
+        "auth": {
+        "user": "login@yourserver.com",
+        "pass": "yourpassword"
+        }
+      }
+    ]
   }
 }
