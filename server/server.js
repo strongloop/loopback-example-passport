@@ -108,6 +108,13 @@ app.get('/local', function(req, res, next) {
   });
 });
 
+app.get('/ldap', function(req, res, next) {
+  res.render('pages/ldap', {
+    user: req.user,
+    url: req.url,
+  });
+});
+
 app.get('/signup', function(req, res, next) {
   res.render('pages/signup', {
     user: req.user,
