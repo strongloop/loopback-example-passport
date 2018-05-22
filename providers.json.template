@@ -101,5 +101,27 @@
     "scope": ["email", "profile"],
     "link": true,
     "failureFlash": true
+  },
+    "azure-ad": {
+    "provider": "azure-ad",
+    "module": "passport-azure-ad",
+    "strategy": "OIDCStrategy",
+    "authScheme" : "openid connect",
+    "callbackHTTPMethod": "post",
+    "identityMetadata" : "https://login.microsoftonline.com/<yourteanant>.onmicrosoft.com/.well-known/openid-configuration",
+    "responseType" : "code id_token",
+    "responseMode": "form_post",
+    "allowHttpForRedirectUrl": true,
+    "validateIssuer": true,
+    "passReqToCallback": true,
+    "clientID": "<azure app client id>",
+    "clientSecret": "<azure app client secret>",
+    "redirectUrl": "http://localhost:3000/auth/azure/callback", //redirect URL set in azure
+    "authPath": "/auth/azure",
+    "callbackPath": "/auth/azure/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": ["email", "profile"], 
+    "failureFlash": true
   }
 }
