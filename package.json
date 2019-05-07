@@ -38,5 +38,6 @@
     "type": "git",
     "url": "git://github.com/strongloop-community/loopback-example-passport.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "author": "IBM Corp."
 }
